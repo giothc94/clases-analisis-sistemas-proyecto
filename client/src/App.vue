@@ -19,7 +19,7 @@
             <router-link class="nav-link" to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
+            <router-link class="nav-link" to="/cart">Cart</router-link>
           </li>
         </ul>
       </div>
@@ -28,6 +28,4 @@
   </div>
 </template>
 
-<style>
-
-</style>
+<style></style>
