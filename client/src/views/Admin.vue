@@ -44,15 +44,19 @@
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="Ingrese el nombre del producto"
+                v-model="nombre"
               />
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Descripcion del producto</label>
+              <label for="exampleInputPassword1"
+                >Descripcion del producto</label
+              >
               <input
                 type="text"
                 class="form-control"
                 id="exampleInputPassword1"
                 placeholder="Ingrese la descipcion del producto"
+                v-model="descripcion"
               />
             </div>
             <div class="form-group">
@@ -61,9 +65,14 @@
                 type="file"
                 class="form-control-file"
                 id="exampleFormControlFile1"
+                v-on:change="cargarImagen"
               />
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button class="btn btn-primary" v-on:click="enviarProducto">Enviar</button>
+          </div>
+          <div class="card p-4 mt-5">
+            <p>Nombre: {{ nombre }}</p>
+            <p>Descripcion: {{ descripcion }}</p>
           </div>
         </div>
       </div>
@@ -72,7 +81,28 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios"
+export default {
+  data() {
+    return {
+      nombre: null,
+      descripcion: null,
+      image: null,
+    };
+  },
+  methods: {
+    cargarImagen(event) {
+      this.image = event.target.files[0];
+    },
+    enviarProducto(){
+      let formData = new FormData();
+      formData.append("nombreProducto",this.nombre);
+      formData.append("descripcionProducto", this.descripcion);
+      formData.append("imagenProducto", this.image)
+      axios.post("http://localhost:3000/products/upload", formData)
+        .then(console.log)
+        .catch(console.error)
+    }
+  },
+};
 </script>
-
-<style></style>
