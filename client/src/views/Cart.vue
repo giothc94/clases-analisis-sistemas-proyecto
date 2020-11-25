@@ -2,7 +2,9 @@
   <div class="about">
     <div class="container">
       <h1 class="mt-5 mb-3 text-center">Your cart</h1>
-      <router-link class="mb-5 text-info" to="/">continuar comprando</router-link>
+      <router-link class="mb-5 text-info" to="/"
+        >continuar comprando</router-link
+      >
       <table class="table mt-3">
         <thead class="thead-dark">
           <tr>
@@ -39,18 +41,18 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
       products: []
-    }
+    };
   },
   methods: {
-    getProducts(){
-      this.products = JSON.parse(localStorage.getItem("productos"))
+    getProducts() {
+      this.products = JSON.parse(localStorage.getItem("productos"));
     }
   },
-  mounted(){
-    this.getProducts()
+  mounted() {
+    this.getProducts();
   }
-}
+};
 </script>

@@ -21,7 +21,12 @@
                 class="card-text d-flex justify-content-lg-between align-items-center"
               >
                 <small class="text-muted mr-5">$ {{ product.precio }}</small>
-                <button class="btn btn-dark" v-on:click="agregarAlCarrito(product)">Agregar al carrito</button>
+                <button
+                  class="btn btn-dark"
+                  v-on:click="agregarAlCarrito(product)"
+                >
+                  Agregar al carrito
+                </button>
               </p>
             </div>
           </div>
@@ -34,25 +39,47 @@
 <script>
 export default {
   name: "Products",
-  data(){
+  data() {
     return {
       products: [
-        {id:1,nombre: "mochila", descripcion:"Es una descripcion corta de mochila", precio: 23.00},
-        {id:2,nombre: "zapatos", descripcion:"Es una descripcion corta de zapatos", precio: 20.00},
-        {id:3,nombre: "camiseta", descripcion:"Es una descripcion corta de camiseta", precio: 13.00},
-        {id:4,nombre: "pantalon", descripcion:"Es una descripcion corta de pantalon", precio: 40.00},
+        {
+          id: 1,
+          nombre: "mochila",
+          descripcion: "Es una descripcion corta de mochila",
+          precio: 23.0
+        },
+        {
+          id: 2,
+          nombre: "zapatos",
+          descripcion: "Es una descripcion corta de zapatos",
+          precio: 20.0
+        },
+        {
+          id: 3,
+          nombre: "camiseta",
+          descripcion: "Es una descripcion corta de camiseta",
+          precio: 13.0
+        },
+        {
+          id: 4,
+          nombre: "pantalon",
+          descripcion: "Es una descripcion corta de pantalon",
+          precio: 40.0
+        }
       ],
-      productsInCar:[]
-    }
+      productsInCar: []
+    };
   },
   methods: {
-    agregarAlCarrito(product){
+    agregarAlCarrito(product) {
       // Forma 1
-      localStorage.setItem(`${product.id}`, JSON.stringify(product))
+      localStorage.setItem(`${product.id}`, JSON.stringify(product));
       // Forma 2
-      this.productsInCar.push(product)
-      let productsString = this.productsInCar.map((producto)=>JSON.stringify(producto))
-      localStorage.setItem("productos",`[${productsString.toString()}]`)
+      this.productsInCar.push(product);
+      let productsString = this.productsInCar.map(producto =>
+        JSON.stringify(producto)
+      );
+      localStorage.setItem("productos", `[${productsString.toString()}]`);
     }
   }
 };
